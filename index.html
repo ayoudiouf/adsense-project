@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outils en Ligne Gratuits - Convertisseurs, Générateurs et Plus</title>
+    <meta name="description" content="Collection d'outils gratuits en ligne : convertisseur PDF, générateur QR code, compresseur d'images, calculateurs et plus encore. Rapide, gratuit, sans inscription.">
+    <meta name="keywords" content="outils gratuits, convertisseur en ligne, générateur qr code, calculateur pourcentage, compteur mots">
+    <meta name="author" content="Outils Gratuits">
+    
+    <!-- REMPLACEZ CETTE LIGNE PAR VOTRE CODE ADSENSE -->
+    <!-- <script data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    
+    <!-- Google Analytics - Ajoutez votre code ici -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* STYLES POUR ADSENSE */
+        .ad-container {
+            background: white;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-placeholder {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .tool-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-icon {
+            font-size: 1.5em;
+        }
+
+        .tool-card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .tool-container {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .tool-container.active {
+            display: block;
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .back-btn:hover {
+            background: #5568d3;
+        }
+
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 5px;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+
+        #qrcode {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+
+        .currency-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .currency-row input {
+            flex: 2;
+        }
+
+        .currency-row select {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .currency-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛠️ Outils en Ligne Gratuits</h1>
+            <p class="tagline">Tous vos outils essentiels en un seul endroit - Rapide, gratuit et sans inscription</p>
+        </header>
+
+        <!-- ADSENSE BLOC 1 - BANNIÈRE HAUT DE PAGE -->
+        <div class="ad-container">
+            <!-- REMPLACEZ CE DIV PAR VOTRE CODE ADSENSE -->
+            <div class="ad-placeholder">
+                Emplacement AdSense 1<br>
+                Bannière horizontale responsive<br>
+                Insérez votre code ici après approbation
+            </div>
+            <!-- 
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- Page d'accueil -->
+        <div id="home" class="tools-grid">
+            <div class="tool-card" onclick="showTool('qrcode')">
+                <h3><span class="tool-icon">📱</span> Générateur QR Code</h3>
+                <p>Créez des QR codes personnalisés instantanément pour vos liens, textes ou contacts</p>
+            </div>
+
+            <div class="tool-card" onclick="showTool('password')">
+                <h3><span class="tool-icon">🔐</span> Générateur de Mots de Passe</h3>
+                <p>Générez des mots de passe sécurisés et robustes en un clic</p>
+            </div>
+
+            <div class="tool-card" onclick="showTool('counter')">
+                <h3><span class="tool-icon">📝</span> Compteur de Mots</h3>
+                <p>Comptez les mots, caractères, phrases et lignes de vos textes</p>
+            </div>
+
+            <div class="tool-card" onclick="showTool('percent')">
+                <h3><span class="tool-icon">📊</span> Calculateur de Pourcentage</h3>
+                <p>Calculez facilement des pourcentages, augmentations et réductions</p>
+            </div>
+
+            <div class="tool-card" onclick="showTool('currency')">
+                <h3><span class="tool-icon">💱</span> Convertisseur de Devises</h3>
+                <p>Convertissez entre différentes devises avec les taux actuels</p>
+            </div>
+
+            <div class="tool-card" onclick="showTool('base64')">
+                <h3><span class="tool-icon">🔄</span> Encodeur Base64</h3>
+                <p>Encodez et décodez vos textes en Base64</p>
+            </div>
+        </div>
+
+        <!-- ADSENSE BLOC 2 - CARRÉ MILIEU PAGE -->
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                Emplacement AdSense 2<br>
+                Carré 300x250 ou responsive<br>
+                Insérez votre code ici après approbation
+            </div>
+        </div>
+
+        <!-- Outils (identiques au code précédent) -->
+        <div id="qrcode-tool" class="tool-container">
+            <button class="back-btn" onclick="showHome()">← Retour aux outils</button>
+            <h2>📱 Générateur de QR Code</h2>
+            <p>Créez un QR code gratuitement en entrant votre texte, URL ou information ci-dessous.</p>
+            
+            <input type="text" id="qr-input" placeholder="Entrez votre URL ou texte ici">
+            <button onclick="generateQR()">Générer le QR Code</button>
+            
+            <div id="qrcode"></div>
+            
+            <!-- ADSENSE DANS L'OUTIL -->
+            <div class="ad-container" style="margin-top: 30px;">
+                <div class="ad-placeholder">Emplacement AdSense outil</div>
+            </div>
+        </div>
+
+        <div id="password-tool" class="tool-container">
+            <button class="back-btn" onclick="showHome()">← Retour aux outils</button>
+            <h2>🔐 Générateur de Mots de Passe Sécurisés</h2>
+            <p>Générez des mots de passe robustes et aléatoires pour protéger vos comptes.</p>
+            
+            <label><input type="checkbox" id="pass-upper" checked> Majuscules (A-Z)</label><br>
+            <label><input type="checkbox" id="pass-lower" checked> Minuscules (a-z)</label><br>
+            <label><input type="checkbox" id="pass-numbers" checked> Chiffres (0-9)</label><br>
+            <label><input type="checkbox" id="pass-symbols" checked> Symboles (!@#$%)</label><br>
+            
+            <label>Longueur: <span id="pass-length-display">16</span></label>
+            <input type="range" id="pass-length" min="8" max="32" value="16" oninput="document.getElementById('pass-length-display').textContent = this.value">
+            
+            <button onclick="generatePassword()">Générer le Mot de Passe</button>
+            <button onclick="copyPassword()">Copier</button>
+            
+            <div class="result" id="password-result"></div>
+        </div>
+
+        <div id="counter-tool" class="tool-container">
+            <button class="back-btn" onclick="showHome()">← Retour aux outils</button>
+            <h2>📝 Compteur de Mots et Caractères</h2>
+            <p>Collez ou tapez votre texte pour compter les mots, caractères, phrases et lignes.</p>
+            
+            <textarea id="text-input" rows="10" placeholder="Collez votre texte ici..." oninput="countText()"></textarea>
+            
+            <div class="result" id="count-result">
+                <strong>Statistiques:</strong><br>
+                Mots: <span id="word-count">0</span><br>
+                Caractères (avec espaces): <span id="char-count">0</span><br>
+                Caractères (sans espaces): <span id="char-no-space">0</span><br>
+                Phrases: <span id="sentence-count">0</span><br>
+                Lignes: <span id="line-count">0</span>
+            </div>
+        </div>
+
+        <div id="percent-tool" class="tool-container">
+            <button class="back-btn" onclick="showHome()">← Retour aux outils</button>
+            <h2>📊 Calculateur de Pourcentage</h2>
+            
+            <h3>Calculer X% de Y</h3>
+            <input type="number" id="percent1" placeholder="Pourcentage (ex: 20)">
+            <input type="number" id="number1" placeholder="Nombre (ex: 100)">
+            <button onclick="calculatePercent1()">Calculer</button>
+            <div class="result" id="percent-result1"></div>
+            
+            <h3>X est quel % de Y?</h3>
+            <input type="number" id="number2" placeholder="Première valeur">
+            <input type="number" id="number3" placeholder="Deuxième valeur">
+            <button onclick="calculatePercent2()">Calculer</button>
+            <div class="result" id="percent-result2"></div>
+        </div>
+
+        <div id="currency-tool" class="tool-container">
+            <button class="back-btn" onclick="showHome()">← Retour aux outils</button>
+            <h2>💱 Convertisseur de Devises</h2>
+            <p>Convertissez entre différentes devises mondiales.</p>
+            
+            <div class="currency-row">
+                <input type="number" id="amount-from" placeholder="Montant" value="1" oninput="convertCurrency()">
+                <select id="currency-from" onchange="convertCurrency()">
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="USD">USD - Dollar US</option>
+                    <option value="GBP">GBP - Livre Sterling</option>
+                    <option value="JPY">JPY - Yen</option>
+                    <option value="CHF">CHF - Franc Suisse</option>
+                    <option value="CAD">CAD - Dollar Canadien</option>
+                    <option value="XOF">XOF - Franc CFA</option>
+                </select>
+            </div>
+            
+            <div style="text-align: center; margin: 10px 0;">↓</div>
+            
+            <div class="currency-row">
+                <input type="number" id="amount-to" placeholder="Résultat" readonly>
+                <select id="currency-to" onchange="convertCurrency()">
+                    <option value="USD">USD - Dollar US</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - Livre Sterling</option>
+                    <option value="JPY">JPY - Yen</option>
+                    <option value="CHF">CHF - Franc Suisse</option>
+                    <option value="CAD">CAD - Dollar Canadien</option>
+                    <option value="XOF">XOF - Franc CFA</option>
+                </select>
+            </div>
+            
+            <div class="result" id="currency-result"></div>
+        </div>
+
+        <div id="base64-tool" class="tool-container">
+            <button class="back-btn" onclick="showHome()">← Retour aux outils</button>
+            <h2>🔄 Encodeur/Décodeur Base64</h2>
+            
+            <h3>Encoder en Base64</h3>
+            <textarea id="encode-input" rows="5" placeholder="Texte à encoder"></textarea>
+            <button onclick="encodeBase64()">Encoder</button>
+            <div class="result" id="encode-result"></div>
+            
+            <h3>Décoder depuis Base64</h3>
+            <textarea id="decode-input" rows="5" placeholder="Base64 à décoder"></textarea>
+            <button onclick="decodeBase64()">Décoder</button>
+            <div class="result" id="decode-result"></div>
+        </div>
+
+        <!-- ADSENSE BLOC 3 - BANNIÈRE BAS DE PAGE -->
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                Emplacement AdSense 3<br>
+                Bannière horizontale responsive<br>
+                Insérez votre code ici après approbation
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Outils en Ligne Gratuits - Tous droits réservés</p>
+            <p>Tous les outils sont gratuits et ne nécessitent aucune inscription</p>
+            <p><a href="#" style="color: #667eea;">Politique de confidentialité</a> | <a href="#" style="color: #667eea;">Contact</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        let qrCode = null;
+
+        function showHome() {
+            document.getElementById('home').style.display = 'grid';
+            document.querySelectorAll('.tool-container').forEach(tool => {
+                tool.classList.remove('active');
+            });
+        }
+
+        function showTool(toolName) {
+            document.getElementById('home').style.display = 'none';
+            document.querySelectorAll('.tool-container').forEach(tool => {
+                tool.classList.remove('active');
+            });
+            document.getElementById(toolName + '-tool').classList.add('active');
+        }
+
+        function generateQR() {
+            const text = document.getElementById('qr-input').value;
+            if (!text) {
+                alert('Veuillez entrer un texte ou une URL');
+                return;
+            }
+            
+            const qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = '';
+            
+            qrCode = new QRCode(qrcodeDiv, {
+                text: text,
+                width: 256,
+                height: 256,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+            });
+        }
+
+        function generatePassword() {
+            const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lower = 'abcdefghijklmnopqrstuvwxyz';
+            const numbers = '0123456789';
+            const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            let chars = '';
+            if (document.getElementById('pass-upper').checked) chars += upper;
+            if (document.getElementById('pass-lower').checked) chars += lower;
+            if (document.getElementById('pass-numbers').checked) chars += numbers;
+            if (document.getElementById('pass-symbols').checked) chars += symbols;
+            
+            if (chars === '') {
+                alert('Sélectionnez au moins un type de caractère');
+                return;
+            }
+            
+            const length = document.getElementById('pass-length').value;
+            let password = '';
+            
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            document.getElementById('password-result').innerHTML = 
+                `<strong>Votre mot de passe:</strong><br><code style="font-size: 1.2em; word-break: break-all;">${password}</code>`;
+        }
+
+        function copyPassword() {
+            const result = document.getElementById('password-result').textContent;
+            const password = result.split('\n')[1];
+            navigator.clipboard.writeText(password);
+            alert('Mot de passe copié!');
+        }
+
+        function countText() {
+            const text = document.getElementById('text-input').value;
+            
+            const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+            const chars = text.length;
+            const charsNoSpace = text.replace(/\s/g, '').length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            const lines = text.split('\n').length;
+            
+            document.getElementById('word-count').textContent = words;
+            document.getElementById('char-count').textContent = chars;
+            document.getElementById('char-no-space').textContent = charsNoSpace;
+            document.getElementById('sentence-count').textContent = sentences;
+            document.getElementById('line-count').textContent = lines;
+        }
+
+        function calculatePercent1() {
+            const percent = parseFloat(document.getElementById('percent1').value);
+            const number = parseFloat(document.getElementById('number1').value);
+            
+            if (isNaN(percent) || isNaN(number)) {
+                alert('Veuillez entrer des nombres valides');
+                return;
+            }
+            
+            const result = (percent / 100) * number;
+            document.getElementById('percent-result1').innerHTML = 
+                `<strong>Résultat:</strong> ${percent}% de ${number} = ${result.toFixed(2)}`;
+        }
+
+        function calculatePercent2() {
+            const num1 = parseFloat(document.getElementById('number2').value);
+            const num2 = parseFloat(document.getElementById('number3').value);
+            
+            if (isNaN(num1) || isNaN(num2) || num2 === 0) {
+                alert('Veuillez entrer des nombres valides');
+                return;
+            }
+            
+            const result = (num1 / num2) * 100;
+            document.getElementById('percent-result2').innerHTML = 
+                `<strong>Résultat:</strong> ${num1} est ${result.toFixed(2)}% de ${num2}`;
+        }
+
+        const rates = {
+            EUR: 1,
+            USD: 1.10,
+            GBP: 0.86,
+            JPY: 157.50,
+            CHF: 0.94,
+            CAD: 1.47,
+            XOF: 655.96
+        };
+
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('amount-from').value);
+            const from = document.getElementById('currency-from').value;
+            const to = document.getElementById('currency-to').value;
+            
+            if (isNaN(amount)) return;
+            
+            const amountInEUR = amount / rates[from];
+            const result = amountInEUR * rates[to];
+            
+            document.getElementById('amount-to').value = result.toFixed(2);
+            document.getElementById('currency-result').innerHTML = 
+                `<strong>Taux:</strong> 1 ${from} = ${(rates[to] / rates[from]).toFixed(4)} ${to}<br>
+                <small>Note: Taux approximatifs à titre indicatif</small>`;
+        }
+
+        function encodeBase64() {
+            const text = document.getElementById('encode-input').value;
+            if (!text) {
+                alert('Veuillez entrer du texte');
+                return;
+            }
+            
+            const encoded = btoa(unescape(encodeURIComponent(text)));
+            document.getElementById('encode-result').innerHTML = 
+                `<strong>Résultat encodé:</strong><br><code style="word-break: break-all;">${encoded}</code>`;
+        }
+
+        function decodeBase64() {
+            const text = document.getElementById('decode-input').value;
+            if (!text) {
+                alert('Veuillez entrer du Base64');
+                return;
+            }
+            
+            try {
+                const decoded = decodeURIComponent(escape(atob(text)));
+                document.getElementById('decode-result').innerHTML = 
+                    `<strong>Résultat décodé:</strong><br>${decoded}`;
+            } catch (e) {
+                document.getElementById('decode-result').innerHTML = 
+                    `<strong style="color: red;">Erreur:</strong> Base64 invalide`;
+            }
+        }
+
+        window.onload = function() {
+            convertCurrency();
+        };
+    </script>
+</body>
+</html>
