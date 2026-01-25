@@ -123,7 +123,7 @@
         }
 
         .tool-container {
-            display: none;
+            display: block;
             background: white;
             padding: 30px;
             border-radius: 10px;
@@ -131,9 +131,7 @@
             margin: 20px 0;
         }
 
-        .tool-container.active {
-            display: block;
-        }
+      
 
         .back-btn {
             background: #667eea;
@@ -223,6 +221,7 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         <header>
             <h1>🛠️ Outils en Ligne Gratuits</h1>
@@ -413,13 +412,23 @@
         </div>
 
         <!-- ADSENSE BLOC 3 - BANNIÈRE BAS DE PAGE -->
-        <div class="ad-container">
-            <div class="ad-placeholder">
-                Emplacement AdSense 3<br>
-                Bannière horizontale responsive<br>
-                Insérez votre code ici après approbation
-            </div>
-        </div>
+        <section style="background:white; padding:25px; border-radius:10px; margin:30px 0;">
+            <h2>Pourquoi utiliser nos outils en ligne gratuits ?</h2>
+            <p>Notre plateforme regroupe plusieurs outils utiles accessibles gratuitement sans inscription. Vous pouvez générer des QR codes, créer des mots de passe sécurisés, convertir des devises, calculer des pourcentages et encoder du texte en Base64 directement depuis votre navigateur.</p>
+        
+            <p>Ces outils sont conçus pour les étudiants, développeurs, professionnels du digital et toute personne ayant besoin d'outils rapides et efficaces au quotidien.</p>
+        
+            <h3>Outils disponibles :</h3>
+            <ul>
+                <li>Générateur de QR Code</li>
+                <li>Générateur de mots de passe</li>
+                <li>Compteur de mots</li>
+                <li>Calculateur de pourcentage</li>
+                <li>Convertisseur de devises</li>
+                <li>Encodeur / Décodeur Base64</li>
+            </ul>
+        </section>
+        
 
         <footer>
             <p>&copy; 2026 Outils en Ligne Gratuits - Tous droits réservés</p>
@@ -432,21 +441,37 @@
 
     <script>
         let qrCode = null;
-
         function showHome() {
-            document.getElementById('home').style.display = 'grid';
+            // Masquer tous les outils
             document.querySelectorAll('.tool-container').forEach(tool => {
-                tool.classList.remove('active');
+                tool.style.display = 'none';
             });
+        
+            // Afficher la grille d'outils
+            document.getElementById('home').style.display = 'grid';
+            
+            // Remonter en haut de la page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        
+        
 
         function showTool(toolName) {
+            // Masquer la page d'accueil
             document.getElementById('home').style.display = 'none';
+            
+            // Masquer tous les autres outils
             document.querySelectorAll('.tool-container').forEach(tool => {
-                tool.classList.remove('active');
+                tool.style.display = 'none';
             });
-            document.getElementById(toolName + '-tool').classList.add('active');
+        
+            // Afficher l'outil sélectionné
+            const toolDiv = document.getElementById(toolName + '-tool');
+            toolDiv.style.display = 'block';
+            toolDiv.scrollIntoView({ behavior: 'smooth' });
         }
+        
+        
 
         function generateQR() {
             const text = document.getElementById('qr-input').value;
