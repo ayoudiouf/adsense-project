@@ -220,6 +220,18 @@
         }
     </style>
 </head>
+        <!-- ADSENSE BLOC 1 - BANNIÈRE HAUT DE PAGE -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9261804277765164"
+                 data-ad-slot="1111111111"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
 <body>
 
     <div class="container">
@@ -428,6 +440,11 @@
                 <li>Encodeur / Décodeur Base64</li>
             </ul>
         </section>
+          <!-- ADSENSE BLOC 3 - BAS DE PAGE -->
+          <section style="background:white; padding:25px; border-radius:10px; margin:30px 0;">
+            <h2>Pourquoi utiliser nos outils en ligne gratuits ?</h2>
+            <p>Notre plateforme regroupe plusieurs outils utiles accessibles gratuitement sans inscription...</p>
+        </section>
         
 
         <footer>
@@ -436,199 +453,218 @@
             <p><a href="#" style="color: #667eea;">Politique de confidentialité</a> | <a href="#" style="color: #667eea;">Contact</a></p>
         </footer>
     </div>
+      <!-- ADSENSE BLOC 2 - CARRÉ MILIEU PAGE -->
+      <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9261804277765164"
+             data-ad-slot="2222222222"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    <script>
-        let qrCode = null;
-        function showHome() {
-            // Masquer tous les outils
-            document.querySelectorAll('.tool-container').forEach(tool => {
-                tool.style.display = 'none';
-            });
-        
-            // Afficher la grille d'outils
-            document.getElementById('home').style.display = 'grid';
-            
-            // Remonter en haut de la page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        
+   <script>
+    let qrCode = null;
 
-        function showTool(toolName) {
-            // Masquer la page d'accueil
-            document.getElementById('home').style.display = 'none';
-            
-            // Masquer tous les autres outils
-            document.querySelectorAll('.tool-container').forEach(tool => {
-                tool.style.display = 'none';
-            });
-        
-            // Afficher l'outil sélectionné
-            const toolDiv = document.getElementById(toolName + '-tool');
-            toolDiv.style.display = 'block';
-            toolDiv.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        
+    // Afficher la page d'accueil et masquer tous les outils
+    function showHome() {
+        // Masquer tous les outils
+        document.querySelectorAll('.tool-container').forEach(tool => {
+            tool.style.display = 'none';
+        });
 
-        function generateQR() {
-            const text = document.getElementById('qr-input').value;
-            if (!text) {
-                alert('Veuillez entrer un texte ou une URL');
-                return;
-            }
-            
-            const qrcodeDiv = document.getElementById('qrcode');
-            qrcodeDiv.innerHTML = '';
-            
-            qrCode = new QRCode(qrcodeDiv, {
-                text: text,
-                width: 256,
-                height: 256,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
-            });
+        // Afficher la grille d'outils
+        document.getElementById('home').style.display = 'grid';
+
+        // Remonter en haut de la page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Afficher un outil spécifique et masquer la page d'accueil
+    function showTool(toolName) {
+        // Masquer la page d'accueil
+        document.getElementById('home').style.display = 'none';
+
+        // Masquer tous les autres outils
+        document.querySelectorAll('.tool-container').forEach(tool => {
+            tool.style.display = 'none';
+        });
+
+        // Afficher l'outil sélectionné
+        const toolDiv = document.getElementById(toolName + '-tool');
+        toolDiv.style.display = 'block';
+        toolDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Générateur de QR Code
+    function generateQR() {
+        const text = document.getElementById('qr-input').value;
+        if (!text) {
+            alert('Veuillez entrer un texte ou une URL');
+            return;
         }
 
-        function generatePassword() {
-            const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const lower = 'abcdefghijklmnopqrstuvwxyz';
-            const numbers = '0123456789';
-            const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-            
-            let chars = '';
-            if (document.getElementById('pass-upper').checked) chars += upper;
-            if (document.getElementById('pass-lower').checked) chars += lower;
-            if (document.getElementById('pass-numbers').checked) chars += numbers;
-            if (document.getElementById('pass-symbols').checked) chars += symbols;
-            
-            if (chars === '') {
-                alert('Sélectionnez au moins un type de caractère');
-                return;
-            }
-            
-            const length = document.getElementById('pass-length').value;
-            let password = '';
-            
-            for (let i = 0; i < length; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            
-            document.getElementById('password-result').innerHTML = 
-                `<strong>Votre mot de passe:</strong><br><code style="font-size: 1.2em; word-break: break-all;">${password}</code>`;
+        const qrcodeDiv = document.getElementById('qrcode');
+        qrcodeDiv.innerHTML = '';
+
+        qrCode = new QRCode(qrcodeDiv, {
+            text: text,
+            width: 256,
+            height: 256,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+        });
+    }
+
+    // Générateur de mots de passe
+    function generatePassword() {
+        const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lower = 'abcdefghijklmnopqrstuvwxyz';
+        const numbers = '0123456789';
+        const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+        let chars = '';
+        if (document.getElementById('pass-upper').checked) chars += upper;
+        if (document.getElementById('pass-lower').checked) chars += lower;
+        if (document.getElementById('pass-numbers').checked) chars += numbers;
+        if (document.getElementById('pass-symbols').checked) chars += symbols;
+
+        if (chars === '') {
+            alert('Sélectionnez au moins un type de caractère');
+            return;
         }
 
-        function copyPassword() {
-            const result = document.getElementById('password-result').textContent;
-            const password = result.split('\n')[1];
-            navigator.clipboard.writeText(password);
-            alert('Mot de passe copié!');
+        const length = document.getElementById('pass-length').value;
+        let password = '';
+
+        for (let i = 0; i < length; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
         }
 
-        function countText() {
-            const text = document.getElementById('text-input').value;
-            
-            const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-            const chars = text.length;
-            const charsNoSpace = text.replace(/\s/g, '').length;
-            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
-            const lines = text.split('\n').length;
-            
-            document.getElementById('word-count').textContent = words;
-            document.getElementById('char-count').textContent = chars;
-            document.getElementById('char-no-space').textContent = charsNoSpace;
-            document.getElementById('sentence-count').textContent = sentences;
-            document.getElementById('line-count').textContent = lines;
+        document.getElementById('password-result').innerHTML =
+            `<strong>Votre mot de passe:</strong><br><code style="font-size: 1.2em; word-break: break-all;">${password}</code>`;
+    }
+
+    function copyPassword() {
+        const password = document.getElementById('password-result').querySelector('code').textContent;
+        navigator.clipboard.writeText(password);
+        alert('Mot de passe copié!');
+    }
+
+    // Compteur de mots
+    function countText() {
+        const text = document.getElementById('text-input').value;
+
+        const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+        const chars = text.length;
+        const charsNoSpace = text.replace(/\s/g, '').length;
+        const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+        const lines = text.split('\n').length;
+
+        document.getElementById('word-count').textContent = words;
+        document.getElementById('char-count').textContent = chars;
+        document.getElementById('char-no-space').textContent = charsNoSpace;
+        document.getElementById('sentence-count').textContent = sentences;
+        document.getElementById('line-count').textContent = lines;
+    }
+
+    // Calculateur de pourcentage
+    function calculatePercent1() {
+        const percent = parseFloat(document.getElementById('percent1').value);
+        const number = parseFloat(document.getElementById('number1').value);
+
+        if (isNaN(percent) || isNaN(number)) {
+            alert('Veuillez entrer des nombres valides');
+            return;
         }
 
-        function calculatePercent1() {
-            const percent = parseFloat(document.getElementById('percent1').value);
-            const number = parseFloat(document.getElementById('number1').value);
-            
-            if (isNaN(percent) || isNaN(number)) {
-                alert('Veuillez entrer des nombres valides');
-                return;
-            }
-            
-            const result = (percent / 100) * number;
-            document.getElementById('percent-result1').innerHTML = 
-                `<strong>Résultat:</strong> ${percent}% de ${number} = ${result.toFixed(2)}`;
+        const result = (percent / 100) * number;
+        document.getElementById('percent-result1').innerHTML =
+            `<strong>Résultat:</strong> ${percent}% de ${number} = ${result.toFixed(2)}`;
+    }
+
+    function calculatePercent2() {
+        const num1 = parseFloat(document.getElementById('number2').value);
+        const num2 = parseFloat(document.getElementById('number3').value);
+
+        if (isNaN(num1) || isNaN(num2) || num2 === 0) {
+            alert('Veuillez entrer des nombres valides');
+            return;
         }
 
-        function calculatePercent2() {
-            const num1 = parseFloat(document.getElementById('number2').value);
-            const num2 = parseFloat(document.getElementById('number3').value);
-            
-            if (isNaN(num1) || isNaN(num2) || num2 === 0) {
-                alert('Veuillez entrer des nombres valides');
-                return;
-            }
-            
-            const result = (num1 / num2) * 100;
-            document.getElementById('percent-result2').innerHTML = 
-                `<strong>Résultat:</strong> ${num1} est ${result.toFixed(2)}% de ${num2}`;
+        const result = (num1 / num2) * 100;
+        document.getElementById('percent-result2').innerHTML =
+            `<strong>Résultat:</strong> ${num1} est ${result.toFixed(2)}% de ${num2}`;
+    }
+
+    // Convertisseur de devises
+    const rates = {
+        EUR: 1,
+        USD: 1.10,
+        GBP: 0.86,
+        JPY: 157.50,
+        CHF: 0.94,
+        CAD: 1.47,
+        XOF: 655.96
+    };
+
+    function convertCurrency() {
+        const amount = parseFloat(document.getElementById('amount-from').value);
+        const from = document.getElementById('currency-from').value;
+        const to = document.getElementById('currency-to').value;
+
+        if (isNaN(amount)) return;
+
+        const amountInEUR = amount / rates[from];
+        const result = amountInEUR * rates[to];
+
+        document.getElementById('amount-to').value = result.toFixed(2);
+        document.getElementById('currency-result').innerHTML =
+            `<strong>Taux:</strong> 1 ${from} = ${(rates[to] / rates[from]).toFixed(4)} ${to}<br>
+            <small>Note: Taux approximatifs à titre indicatif</small>`;
+    }
+
+    // Encodeur / Décodeur Base64
+    function encodeBase64() {
+        const text = document.getElementById('encode-input').value;
+        if (!text) {
+            alert('Veuillez entrer du texte');
+            return;
         }
 
-        const rates = {
-            EUR: 1,
-            USD: 1.10,
-            GBP: 0.86,
-            JPY: 157.50,
-            CHF: 0.94,
-            CAD: 1.47,
-            XOF: 655.96
-        };
+        const encoded = btoa(unescape(encodeURIComponent(text)));
+        document.getElementById('encode-result').innerHTML =
+            `<strong>Résultat encodé:</strong><br><code style="word-break: break-all;">${encoded}</code>`;
+    }
 
-        function convertCurrency() {
-            const amount = parseFloat(document.getElementById('amount-from').value);
-            const from = document.getElementById('currency-from').value;
-            const to = document.getElementById('currency-to').value;
-            
-            if (isNaN(amount)) return;
-            
-            const amountInEUR = amount / rates[from];
-            const result = amountInEUR * rates[to];
-            
-            document.getElementById('amount-to').value = result.toFixed(2);
-            document.getElementById('currency-result').innerHTML = 
-                `<strong>Taux:</strong> 1 ${from} = ${(rates[to] / rates[from]).toFixed(4)} ${to}<br>
-                <small>Note: Taux approximatifs à titre indicatif</small>`;
+    function decodeBase64() {
+        const text = document.getElementById('decode-input').value;
+        if (!text) {
+            alert('Veuillez entrer du Base64');
+            return;
         }
 
-        function encodeBase64() {
-            const text = document.getElementById('encode-input').value;
-            if (!text) {
-                alert('Veuillez entrer du texte');
-                return;
-            }
-            
-            const encoded = btoa(unescape(encodeURIComponent(text)));
-            document.getElementById('encode-result').innerHTML = 
-                `<strong>Résultat encodé:</strong><br><code style="word-break: break-all;">${encoded}</code>`;
+        try {
+            const decoded = decodeURIComponent(escape(atob(text)));
+            document.getElementById('decode-result').innerHTML =
+                `<strong>Résultat décodé:</strong><br>${decoded}`;
+        } catch (e) {
+            document.getElementById('decode-result').innerHTML =
+                `<strong style="color: red;">Erreur:</strong> Base64 invalide`;
         }
+    }
 
-        function decodeBase64() {
-            const text = document.getElementById('decode-input').value;
-            if (!text) {
-                alert('Veuillez entrer du Base64');
-                return;
-            }
-            
-            try {
-                const decoded = decodeURIComponent(escape(atob(text)));
-                document.getElementById('decode-result').innerHTML = 
-                    `<strong>Résultat décodé:</strong><br>${decoded}`;
-            } catch (e) {
-                document.getElementById('decode-result').innerHTML = 
-                    `<strong style="color: red;">Erreur:</strong> Base64 invalide`;
-            }
-        }
+    // Initialisation
+    window.onload = function() {
+        showHome();      // Masquer les outils au démarrage
+        convertCurrency(); // Mettre à jour le convertisseur
+    };
+</script>
 
-        window.onload = function() {
-            convertCurrency();
-        };
-    </script>
 </body>
 </html>
